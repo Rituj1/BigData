@@ -1,0 +1,23 @@
+a. select year_id, sum(sales) as total_sales_per_year from sales_order_orc group by year_id;
+
+b. select productline, sum(quantityordered) as max_sales from sales_order_orc group by productline order by max_sales desc limit 1;
+
+c. select qtr_id, sum(sales) as total_sales
+> from sales_order_orc
+> group by qtr_id;
+
+d. select qtr_id, sum(sales) as total_sales
+> from sales_order_orc
+> group by qtr_id
+> order by total_sales limit 1;
+
+e. select country, sum(sales) as total_sales from sales_order_orc group by country order by  total_sales limit 1
+> union all
+> select country, sum(sales) as total_sales from sales_order_orc group by country order by  total_sales desc limit 1;
+
+f. select city, qtr_id, sum(sales) from sales_order_orc group by city, qtr_id;
+
+g. with query1 as (select year_id, month_id , sum(quantityordered) as    total_quantity from sales_order_orc group by year_id, month_id),
+>  query2 as (select year_id, max(total_quantity) as max_sales from query1 group by    year_id)
+> select query2.year_id, month_id, max_sales from query1
+> inner join query2 on query1.total_quantity = query2.max_sales; 
