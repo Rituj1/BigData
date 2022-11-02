@@ -2,7 +2,7 @@ import happybase
 
 #establishing a connection to HBase
 try:
-    connection = happybase.Connection('192.168.56.101')
+    connection = happybase.Connection('ip address')
     print('Connection established')
 except:
     print('Connection failed')
